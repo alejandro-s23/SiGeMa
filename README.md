@@ -1,5 +1,7 @@
 # Sistema de Cautelas
 
+### SISTEMA ESTÁ SENDO DESENVOLVIDO AINDA!!!!
+
 ## Descrição do Projeto
 
 Este projeto é um sistema em Java para o gerenciamento de materiais e cautelas. Ele visa controlar o inventário de itens, registrando a entrada, saída (cautela) e o saldo de materiais, garantindo a organização e o controle de ativos.
