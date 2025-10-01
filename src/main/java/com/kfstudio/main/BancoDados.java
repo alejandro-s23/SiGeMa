@@ -9,12 +9,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author alejandro
  */
-public class Database {
+public class BancoDados {
     
     // Informações de conexão com o banco de dados
     private String url = "jdbc:postgresql://localhost:5432/cautelasDB";
@@ -22,15 +24,33 @@ public class Database {
     private String senha = "277353";
     private Connection cnx = null;
     
-    public Database(){
+    public BancoDados(){
         
         
         
     }
     
-    public ResultSet scriptSql(String sql, boolean retorno) throws SQLException{
-        cnxBD();
+    public void addMatTabela(Material mat, JPanel parent){
+        String sql = "INSERT INTO materiais (material, tipo, previsto, existente, sit_carga) VALUES ('"+mat.getMaterial()+"', '"+mat.getTipo()+"', '"+mat.getPrevisto()+"', '"+mat.getExistente()+"', '"+mat.getSitCarga()+"')";
+        System.out.println(sql);
+        
         try{
+            
+            cnxBD();
+            Statement stt = cnx.createStatement();
+            //stt.execute(sql);
+            fecharCnxBD();
+            JOptionPane.showMessageDialog(parent, "Material: " + mat+"\n Adicionado com sucesso");
+            
+        }catch (SQLException e){System.err.println("Erro no script sql");e.printStackTrace();}
+        
+        
+    }
+    
+    public ResultSet scriptSql(String sql, boolean retorno){
+        
+        try{
+            cnxBD();
             Statement stt = cnx.createStatement();
             if(retorno){
                 ResultSet rs = stt.executeQuery(sql);
@@ -44,14 +64,6 @@ public class Database {
             
         }catch (SQLException e){System.err.println("Erro no script sql");e.printStackTrace();return null;}
         
-    }
-    
-    public void addMat(Material mat) throws SQLException{
-        String sql = "INSERT INTO materiais (material, tipo, previsto, existente, sit_carga) VALUES ('"+ mat.getMaterial() +"', '"+ mat.getTipo() +"', "+ mat.getPrevisto() +", "+ mat.getExistente() +", " + mat.getSitCarga() + " );";
-        cnxBD();
-        scriptSql(sql,false);
-        fecharCnxBD();
-        System.out.println("Dados inseridos com sucesso");
     }
     
     private String[] dadosBD(){

@@ -5,9 +5,11 @@
 package com.kfstudio.main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.UIManager;
 
 /**
@@ -18,12 +20,15 @@ public class MainFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
     public static Material mat = null;
+    public static BancoDados bd;
+    private static ArrayList<Material> materiais;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        Database bancoDados = new Database();
+        materiais = new ArrayList();
+        bd = new BancoDados();
         
     }
     
@@ -303,7 +308,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sitCargaChBActionPerformed
 
     private void addMatBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatBActionPerformed
-        
+        String nomeMat = nomeMatTF.getText();
+        String tipoMat = tipoMatCoB.getSelectedItem().toString();
+        int qntPrevisto = (int)qntPrevistaS.getValue();
+        int qntExistente = (int)qntExistenteS.getValue();
+        boolean sitCarga = sitCargaChB.isSelected();
+        Material tempMat = new Material(nomeMat,tipoMat,qntPrevisto,qntExistente,sitCarga);
+        bd.addMatTabela(tempMat, addMatP);
+        tempMat = null;
     }//GEN-LAST:event_addMatBActionPerformed
 
     /**
