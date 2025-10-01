@@ -4,9 +4,11 @@
  */
 package com.kfstudio.main;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.UIManager;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.sql.SQLException;
 public class MainFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
-
+    public static Material mat = null;
     /**
      * Creates new form MainFrame
      */
@@ -24,7 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
         Database bancoDados = new Database();
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -301,7 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sitCargaChBActionPerformed
 
     private void addMatBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMatBActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_addMatBActionPerformed
 
     /**
@@ -314,13 +316,8 @@ public class MainFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
