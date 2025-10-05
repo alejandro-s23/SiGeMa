@@ -10,6 +10,7 @@ package com.kfstudio.main;
  */
 public class Material {
     
+    private int id = 0;
     private String material;
     private String tipo;
     private boolean sitCarga;
@@ -26,6 +27,47 @@ public class Material {
         this.previsto = previsto;
         this.existente = existente;
         
+    }
+    
+    public Material(){
+        
+    }
+    
+    //Métodos Setters
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setSitCarga(boolean sitCarga) {
+        this.sitCarga = sitCarga;
+    }
+
+    public void setPrevisto(int previsto) {
+        this.previsto = previsto;
+    }
+
+    public void setExistente(int existente) {
+        this.existente = existente;
+    }
+
+    public void setCautelado(int cautelado) {
+        this.cautelado = cautelado;
+        this.saldo = this.existente-this.cautelado;
+    }
+    
+    //Métodos Getters
+    
+    public int getId() {
+        return id;
     }
 
     public String getMaterial() {

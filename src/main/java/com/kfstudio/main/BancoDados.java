@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -19,25 +20,76 @@ import javax.swing.JPanel;
 public class BancoDados {
     
     // Informações de conexão com o banco de dados
-    private String url = "jdbc:postgresql://localhost:5432/cautelasDB";
-    private String usuario = "alejandro";
-    private String senha = "277353";
-    private Connection cnx = null;
+    private static String url = "jdbc:postgresql://localhost:5432/cautelasDB";
+    private static String usuario = "alejandro";
+    private static String senha = "277353";
+    private static ArrayList<Material> materiais;
+    private static ArrayList<Cautela> cautelas;
+    private static Connection cnx = null;
+    private static Statement stt = null;
     
-    public BancoDados(){
+    public static void carregarMateriais(){
         
+        ArrayList<Material> temp = new ArrayList<Material>();
+        Material mat = null;
+        String sql = "SELECT * FROM materiais";
         
-        
+        try{
+            ResultSet rs = scriptSql(sql, true);
+            while(rs.next()){
+                mat = new Material();
+                mat.setId(rs.getInt("id"));
+                mat.setMaterial(rs.getString("material"));
+                mat.setTipo(rs.getString("tipo"));
+                mat.setPrevisto(rs.getInt("previsto"));
+                mat.setExistente(rs.getInt("existente"));
+                mat.setSitCarga(rs.getBoolean("sit_carga"));
+                mat.setCautelado(getCautelas(mat));
+                temp.add(mat);
+            }
+            materiais = temp;
+        }catch(SQLException e){System.err.println("Falha ao carregar os materiais");e.printStackTrace();}
     }
     
-    public void addMatTabela(Material mat, JPanel parent){
+    public static int getListSize(Class cls){
+        
+        if(cls == Material.class){
+            return materiais.size();
+        }else if(cls == Cautela.class){
+            return cautelas.size();
+        }
+        return -1;
+    }
+    
+    public static Material getMaterial(int id){
+        
+        for(int i = 0; i < materiais.size(); i++){
+            if(materiais.get(i).getId() == id){
+                return materiais.get(i);
+            }
+        }
+        return null;
+    }
+    
+    private static int getCautelas(Material mat){
+        try {
+        String sql = "SELECT COUNT(*) FROM cautelas WHERE material_id = " + mat.getId();
+        ResultSet rs = scriptSql(sql, true);
+        if(rs.next())
+            return rs.getInt("count");
+        
+        } catch (SQLException e){e.printStackTrace();}
+        return -1;
+    }
+    
+    public static void addMatTabela(Material mat, JPanel parent){
         String sql = "INSERT INTO materiais (material, tipo, previsto, existente, sit_carga) VALUES ('"+mat.getMaterial()+"', '"+mat.getTipo()+"', '"+mat.getPrevisto()+"', '"+mat.getExistente()+"', '"+mat.getSitCarga()+"')";
         System.out.println(sql);
         
         try{
             
             cnxBD();
-            Statement stt = cnx.createStatement();
+            stt = cnx.createStatement();
             //stt.execute(sql);
             fecharCnxBD();
             JOptionPane.showMessageDialog(parent, "Material: " + mat+"\n Adicionado com sucesso");
@@ -47,11 +99,11 @@ public class BancoDados {
         
     }
     
-    public ResultSet scriptSql(String sql, boolean retorno){
+    private static ResultSet scriptSql(String sql, boolean retorno){
         
         try{
             cnxBD();
-            Statement stt = cnx.createStatement();
+            stt = cnx.createStatement();
             if(retorno){
                 ResultSet rs = stt.executeQuery(sql);
                 fecharCnxBD();
@@ -59,26 +111,24 @@ public class BancoDados {
             }else {
                 stt.execute(sql);
                 return null;
-                
             }
             
         }catch (SQLException e){System.err.println("Erro no script sql");e.printStackTrace();return null;}
         
     }
     
-    private String[] dadosBD(){
+    private static String[] dadosBD(){
         
         return null;
         
     }
     // Método para criar uma conexão com o banco de dados
-    private Connection cnxBD() throws SQLException{
+    private static Connection cnxBD(){
         
         try{
             
             if (cnx == null){
                 cnx = DriverManager.getConnection(url, usuario, senha);
-                System.out.println("Conectado com sucesso!");
             }else if (cnx.isClosed()){
                 cnx = null;
                 return cnxBD();
@@ -95,12 +145,11 @@ public class BancoDados {
     }
     
     // Fechar conexao
-    private void fecharCnxBD(){
+    private static void fecharCnxBD(){
         
         if(cnx != null){
             try{
                 cnx.close();
-                System.out.println("Conexao encerrada");
             } catch(SQLException e){System.err.println("Falha ao fechar a conexao");e.printStackTrace();}
         }
         
