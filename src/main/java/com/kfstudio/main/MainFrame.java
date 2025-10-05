@@ -25,8 +25,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         BancoDados.carregarMateriais();
+        BancoDados.carregarCautelas();
         initComponents();
-        
+        System.out.println(BancoDados.getCautela(1));
     }
     
     private void setComponents(){
@@ -58,6 +59,19 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         descautelaP = new javax.swing.JPanel();
+        materialCoB1 = new javax.swing.JComboBox<>();
+        militarL3 = new javax.swing.JLabel();
+        militarTF1 = new javax.swing.JTextField();
+        militarL4 = new javax.swing.JLabel();
+        qntPrevistaS2 = new javax.swing.JSpinner();
+        militarL5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        tituloPanelL2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        militarTF2 = new javax.swing.JTextField();
         addMatP = new javax.swing.JPanel();
         tituloPanelL = new javax.swing.JLabel();
         nomeMatL = new javax.swing.JLabel();
@@ -216,16 +230,154 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabelaMenus.addTab("Cautelar", cautelaP);
 
+        materialCoB1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        materialCoB1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cautela" }));
+        materialCoB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialCoB1ActionPerformed(evt);
+            }
+        });
+
+        militarL3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        militarL3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        militarL3.setText("Militar que irá cautelar o material");
+
+        militarTF1.setEditable(false);
+        militarTF1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        militarTF1.setToolTipText("Nome");
+        militarTF1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        militarTF1.setName(""); // NOI18N
+        militarTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                militarTF1ActionPerformed(evt);
+            }
+        });
+
+        militarL4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        militarL4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        militarL4.setText("Quantidade");
+
+        qntPrevistaS2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        qntPrevistaS2.setEnabled(false);
+
+        militarL5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        militarL5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        militarL5.setText("Observações");
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        tituloPanelL2.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        tituloPanelL2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloPanelL2.setText("Menu de Descautela");
+
+        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
+        jButton2.setText("Descautelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jCheckBox2.setSelected(true);
+        jCheckBox2.setText("Cautelado Hoje?");
+        jCheckBox2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField2.setText("dd/mm/yyyy");
+        jFormattedTextField2.setEnabled(false);
+        jFormattedTextField2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+
+        militarTF2.setEditable(false);
+        militarTF2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        militarTF2.setToolTipText("Nome");
+        militarTF2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        militarTF2.setName(""); // NOI18N
+        militarTF2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                militarTF2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout descautelaPLayout = new javax.swing.GroupLayout(descautelaP);
         descautelaP.setLayout(descautelaPLayout);
         descautelaPLayout.setHorizontalGroup(
             descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 729, Short.MAX_VALUE)
+            .addGroup(descautelaPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(materialCoB1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tituloPanelL2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(descautelaPLayout.createSequentialGroup()
+                        .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(militarL5, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(militarL3, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(descautelaPLayout.createSequentialGroup()
+                                .addComponent(militarTF1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(militarTF2)))
+                        .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(descautelaPLayout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFormattedTextField2)
+                                    .addGroup(descautelaPLayout.createSequentialGroup()
+                                        .addComponent(militarL4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descautelaPLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(qntPrevistaS2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descautelaPLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descautelaPLayout.createSequentialGroup()
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(23, 23, 23))
+                                    .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap())
         );
         descautelaPLayout.setVerticalGroup(
             descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 365, Short.MAX_VALUE)
+            .addGroup(descautelaPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloPanelL2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(materialCoB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(descautelaPLayout.createSequentialGroup()
+                        .addComponent(militarL3)
+                        .addGap(18, 18, 18)
+                        .addGroup(descautelaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(militarTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(militarTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(militarL5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(descautelaPLayout.createSequentialGroup()
+                        .addComponent(militarL4)
+                        .addGap(15, 15, 15)
+                        .addComponent(qntPrevistaS2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Cautela caut = null;
+        for(int i = 1; i <= BancoDados.getListSize(Cautela.class); i++){
+            caut = BancoDados.getCautela(i);
+            materialCoB1.addItem("Mil: " + caut.getPg() + "  " + caut.getNome() + " | " + caut.getMaterialName() + " | Qnt: " + caut.getQnt() + " | " + caut.getData_cautela());
+        }
 
         jTabelaMenus.addTab("Descautelar", descautelaP);
 
@@ -359,11 +511,17 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabelaMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabelaMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabelaMenus, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabelaMenus, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabelaMenus.getAccessibleContext().setAccessibleName("Cautelar");
@@ -402,6 +560,22 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_materialCoBActionPerformed
 
+    private void materialCoB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialCoB1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materialCoB1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void militarTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_militarTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_militarTF1ActionPerformed
+
+    private void militarTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_militarTF2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_militarTF2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,16 +602,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cautelaP;
     private javax.swing.JPanel descautelaP;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabelaMenus;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JComboBox<String> materialCoB;
+    private javax.swing.JComboBox<String> materialCoB1;
     private javax.swing.JLabel militarL;
     private javax.swing.JLabel militarL1;
     private javax.swing.JLabel militarL2;
+    private javax.swing.JLabel militarL3;
+    private javax.swing.JLabel militarL4;
+    private javax.swing.JLabel militarL5;
     private javax.swing.JTextField militarTF;
+    private javax.swing.JTextField militarTF1;
+    private javax.swing.JTextField militarTF2;
     private javax.swing.JLabel nomeMatL;
     private javax.swing.JTextField nomeMatTF;
     private javax.swing.JComboBox<String> pgCoB;
@@ -446,11 +631,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel qntPrevistaL;
     private javax.swing.JSpinner qntPrevistaS;
     private javax.swing.JSpinner qntPrevistaS1;
+    private javax.swing.JSpinner qntPrevistaS2;
     private javax.swing.JCheckBox sitCargaChB;
     private javax.swing.JLabel sitCargaL;
     private javax.swing.JComboBox<String> tipoMatCoB;
     private javax.swing.JLabel tipoMatL;
     private javax.swing.JLabel tituloPanelL;
     private javax.swing.JLabel tituloPanelL1;
+    private javax.swing.JLabel tituloPanelL2;
     // End of variables declaration//GEN-END:variables
 }

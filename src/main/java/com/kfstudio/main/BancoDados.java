@@ -44,11 +44,35 @@ public class BancoDados {
                 mat.setPrevisto(rs.getInt("previsto"));
                 mat.setExistente(rs.getInt("existente"));
                 mat.setSitCarga(rs.getBoolean("sit_carga"));
-                mat.setCautelado(getCautelas(mat));
+                mat.setCautelado(getQntCautelas(mat));
                 temp.add(mat);
             }
             materiais = temp;
         }catch(SQLException e){System.err.println("Falha ao carregar os materiais");e.printStackTrace();}
+    }
+    
+    public static void carregarCautelas(){
+        
+        ArrayList<Cautela> temp = new ArrayList<Cautela>();
+        Cautela caut = null;
+        String sql = "SELECT * FROM cautelas;";
+        try{
+            ResultSet rs = scriptSql(sql, true);
+            while(rs.next()){
+                caut = new Cautela();
+                caut.setId(rs.getInt("id"));
+                caut.setMaterialId(rs.getInt("material_id"));
+                caut.setQnt(rs.getInt("qnt"));
+                caut.setData_cautela(rs.getDate("data_cautela"));
+                caut.setPg(rs.getString("pg"));
+                caut.setNome(rs.getString("nome"));
+                caut.setObs(rs.getString("obs"));
+                caut.setSit_cautela(rs.getBoolean("sit_cautela"));
+                caut.setData_descautela(rs.getDate("data_descautela"));
+                temp.add(caut);
+            }
+        }catch(SQLException e){e.printStackTrace();}
+        cautelas = temp;
     }
     
     public static int getListSize(Class cls){
@@ -71,7 +95,17 @@ public class BancoDados {
         return null;
     }
     
-    private static int getCautelas(Material mat){
+    public static Cautela getCautela(int id){
+        
+        for(int i = 0; i < cautelas.size(); i++){
+            if(cautelas.get(i).getId() == id){
+                return cautelas.get(i);
+            }
+        }
+        return null;
+    }
+    
+    private static int getQntCautelas(Material mat){
         try {
         String sql = "SELECT COUNT(*) FROM cautelas WHERE material_id = " + mat.getId();
         ResultSet rs = scriptSql(sql, true);

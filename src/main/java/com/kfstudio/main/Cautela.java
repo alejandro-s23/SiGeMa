@@ -12,7 +12,8 @@ import java.util.Date;
  */
 public class Cautela {
     
-    private int material_id;
+    private int id = 0;
+    private int materialId;
     private int qnt;
     private Date data_cautela;
     private String pg;
@@ -20,10 +21,11 @@ public class Cautela {
     private String obs;
     private boolean sit_cautela;
     private Date data_descautela;
+    private Material material;
     
-    public Cautela(int material_id, int qnt, Date data_cautela, String pg, String nome, String obs, boolean sit_cautela){
+    public Cautela(int materialId, int qnt, Date data_cautela, String pg, String nome, String obs, boolean sit_cautela){
         
-        this.material_id = material_id;
+        this.materialId = materialId;
         this.qnt = qnt;
         this.data_cautela = data_cautela;
         this.pg = pg;
@@ -32,9 +34,58 @@ public class Cautela {
         this.sit_cautela = sit_cautela;
         
     }
+    
+    public Cautela(){
+        
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setMaterialId(int material_id) {
+        this.materialId = material_id;
+        this.material = BancoDados.getMaterial(material_id);
+    }
+
+    public void setQnt(int qnt) {
+        this.qnt = qnt;
+    }
+
+    public void setData_cautela(Date data_cautela) {
+        this.data_cautela = data_cautela;
+    }
+
+    public void setPg(String pg) {
+        this.pg = pg;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public void setSit_cautela(boolean sit_cautela) {
+        this.sit_cautela = sit_cautela;
+    }
+
+    public void setData_descautela(Date data_descautela) {
+        this.data_descautela = data_descautela;
+    }
+    
+    public String getMaterialName(){
+        return this.material.getMaterial();
+    }
+    
+    public int getId(){
+        return this.id;
+    }
 
     public int getMaterial_id() {
-        return material_id;
+        return materialId;
     }
 
     public int getQnt() {
@@ -65,6 +116,9 @@ public class Cautela {
         return data_descautela;
     }
     
-    
+    @Override
+    public String toString(){
+        return material.getMaterial() + " | " + this.qnt + " | " + this.data_cautela + " | " + this.pg + " " + this.nome + " | " + this.obs;
+    }
     
 }
