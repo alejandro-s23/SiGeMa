@@ -28,14 +28,13 @@ public class BancoDados {
     private static Connection cnx = null;
     private static Statement stt = null;
     
-    public static void carregarMateriais(){
+    public static void carregarMateriais(boolean fecharCnx){
         
         ArrayList<Material> temp = new ArrayList<Material>();
         Material mat = null;
         String sql = "SELECT * FROM materiais";
-        
         try{
-            ResultSet rs = scriptSql(sql, true);
+            ResultSet rs = scriptSql(sql, true, fecharCnx);
             while(rs.next()){
                 mat = new Material();
                 mat.setId(rs.getInt("id"));
@@ -44,20 +43,20 @@ public class BancoDados {
                 mat.setPrevisto(rs.getInt("previsto"));
                 mat.setExistente(rs.getInt("existente"));
                 mat.setSitCarga(rs.getBoolean("sit_carga"));
-                mat.setCautelado(getQntCautelas(mat));
+                mat.setCautelado(getQntCautelas(mat,false));
                 temp.add(mat);
             }
             materiais = temp;
         }catch(SQLException e){System.err.println("Falha ao carregar os materiais");e.printStackTrace();}
     }
     
-    public static void carregarCautelas(){
+    public static void carregarCautelas(boolean fecharCnx){
         
         ArrayList<Cautela> temp = new ArrayList<Cautela>();
         Cautela caut = null;
         String sql = "SELECT * FROM cautelas;";
         try{
-            ResultSet rs = scriptSql(sql, true);
+            ResultSet rs = scriptSql(sql, true,fecharCnx);
             while(rs.next()){
                 caut = new Cautela();
                 caut.setId(rs.getInt("id"));
@@ -105,44 +104,53 @@ public class BancoDados {
         return null;
     }
     
-    private static int getQntCautelas(Material mat){
-        try {
-        String sql = "SELECT COUNT(*) FROM cautelas WHERE material_id = " + mat.getId();
-        ResultSet rs = scriptSql(sql, true);
-        if(rs.next())
-            return rs.getInt("count");
+    private static int getQntCautelas(Material mat, boolean fecharCnx){
         
+        try {
+            String sql = "SELECT COUNT(*) FROM cautelas WHERE material_id = " + mat.getId();
+            ResultSet rs = scriptSql(sql, true,fecharCnx);
+            if(rs.next()){
+                return rs.getInt("count");
+            }
+
         } catch (SQLException e){e.printStackTrace();}
+        
         return -1;
     }
     
-    public static void addMatTabela(Material mat, JPanel parent){
+    public static void addMatTabela(Material mat, JPanel parent, boolean fecharCnx){
+        
         String sql = "INSERT INTO materiais (material, tipo, previsto, existente, sit_carga) VALUES ('"+mat.getMaterial()+"', '"+mat.getTipo()+"', '"+mat.getPrevisto()+"', '"+mat.getExistente()+"', '"+mat.getSitCarga()+"')";
         System.out.println(sql);
-        
-        try{
-            
-            cnxBD();
-            stt = cnx.createStatement();
-            //stt.execute(sql);
-            fecharCnxBD();
-            JOptionPane.showMessageDialog(parent, "Material: " + mat+"\n Adicionado com sucesso");
-            
-        }catch (SQLException e){System.err.println("Erro no script sql");e.printStackTrace();}
-        
+        scriptSql(sql,false,false);
+        carregarMateriais(fecharCnx);
+        JOptionPane.showMessageDialog(parent, "Material: " + getMaterial(materiais.getLast().getId())+"\n Adicionado com sucesso");
         
     }
     
-    private static ResultSet scriptSql(String sql, boolean retorno){
+    public static void addCautela(Cautela caut, JPanel parent, boolean fecharCnx){
+        
+        String sql = "INSERT INTO cautelas (material_id, qnt, data_cautela, pg, nome, obs) VALUES ("+caut.getMaterial_id()+", "+caut.getQnt()+", "+caut.getData_cautela()+", '"+caut.getPg()+"', '"+caut.getNome()+"', '"+caut.getObs()+"')";
+        System.out.println(sql);
+        //scriptSql(sql,false,fecharCnx);
+        JOptionPane.showMessageDialog(parent, "Material: " + caut+"\n Adicionado com sucesso");
+            
+    }
+    
+    private static ResultSet scriptSql(String sql, boolean retorno, boolean fecharCnx){
         
         try{
-            cnxBD();
+            if(cnx == null || cnx.isClosed())
+                cnxBD();
             stt = cnx.createStatement();
             if(retorno){
                 ResultSet rs = stt.executeQuery(sql);
-                fecharCnxBD();
+                if(fecharCnx)
+                    fecharCnxBD();
                 return rs;
             }else {
+                if(fecharCnx)
+                    fecharCnxBD();
                 stt.execute(sql);
                 return null;
             }

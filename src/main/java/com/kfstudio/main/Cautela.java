@@ -108,7 +108,7 @@ public class Cautela {
         return obs;
     }
 
-    public boolean isSit_cautela() {
+    public boolean getSit_cautela() {
         return sit_cautela;
     }
 

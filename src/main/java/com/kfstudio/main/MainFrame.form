@@ -75,21 +75,21 @@
                                       <Component id="militarTF" min="-2" pref="216" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="militarL2" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                                  <Component id="obsSP" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                                   <Component id="militarL" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jFormattedTextField1" max="32767" attributes="0"/>
+                                          <Component id="dataCautelaFTF" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="militarL1" min="-2" pref="224" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="qntPrevistaS1" min="-2" pref="224" max="-2" attributes="0"/>
+                                              <Component id="qntCautS" min="-2" pref="224" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -97,10 +97,10 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jButton1" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Component id="cautelaB" min="-2" pref="167" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jCheckBox1" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
+                                          <Component id="dataCautelaChB" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -129,18 +129,18 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="militarL2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              <Component id="obsSP" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="militarL1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="qntPrevistaS1" min="-2" max="-2" attributes="0"/>
+                              <Component id="qntCautS" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataCautelaChB" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataCautelaFTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="cautelaB" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -165,7 +165,7 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="Material mat = null;&#xa;for(int i = 1; i &lt;= BancoDados.getListSize(Material.class); i++){&#xa;    mat = BancoDados.getMaterial(i);&#xa;    materialCoB.addItem(&quot;Saldo: &quot; + mat.getSaldo() + &quot; | &quot; + mat.getMaterial());&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="lerMateriais();"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="militarL">
@@ -184,18 +184,18 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="12">
-                    <StringItem index="0" value="Cel"/>
-                    <StringItem index="1" value="Maj"/>
-                    <StringItem index="2" value="Cap"/>
-                    <StringItem index="3" value="1&#xb0;Ten"/>
-                    <StringItem index="4" value="2&#xb0;Ten"/>
-                    <StringItem index="5" value="STen"/>
-                    <StringItem index="6" value="1&#xb0;Sgt"/>
-                    <StringItem index="7" value="2&#xb0;Sgt"/>
-                    <StringItem index="8" value="3&#xb0;Sgt"/>
-                    <StringItem index="9" value="Cb EP"/>
-                    <StringItem index="10" value="Sd EP"/>
-                    <StringItem index="11" value="Sd EV"/>
+                    <StringItem index="0" value="CEL"/>
+                    <StringItem index="1" value="MAJ"/>
+                    <StringItem index="2" value="CAP"/>
+                    <StringItem index="3" value="1&#xb0;TEN"/>
+                    <StringItem index="4" value="2&#xb0;TEN"/>
+                    <StringItem index="5" value="STEN"/>
+                    <StringItem index="6" value="1&#xb0;SGT"/>
+                    <StringItem index="7" value="2&#xb0;SGT"/>
+                    <StringItem index="8" value="3&#xb0;SGT"/>
+                    <StringItem index="9" value="CB EP"/>
+                    <StringItem index="10" value="SD EP"/>
+                    <StringItem index="11" value="SD EV"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -227,7 +227,7 @@
                 <Property name="text" type="java.lang.String" value="Quantidade"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="qntPrevistaS1">
+            <Component class="javax.swing.JSpinner" name="qntCautS">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
@@ -243,14 +243,14 @@
                 <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xf5;es"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="obsSP">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="obsTA">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -267,7 +267,7 @@
                 <Property name="text" type="java.lang.String" value="Menu de Cautela"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="cautelaB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="20" style="1"/>
@@ -275,10 +275,10 @@
                 <Property name="text" type="java.lang.String" value="Cautelar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cautelaBActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="dataCautelaChB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
@@ -287,8 +287,11 @@
                 <Property name="text" type="java.lang.String" value="Cautelado Hoje?"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataCautelaChBActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+            <Component class="javax.swing.JFormattedTextField" name="dataCautelaFTF">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format subtype="1" type="1"/>
@@ -318,26 +321,26 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="materialCoB1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="cautelasCoB" alignment="1" max="32767" attributes="0"/>
                           <Component id="tituloPanelL2" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="militarL5" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                                  <Component id="obsL1" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                                  <Component id="obsSP1" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                                   <Component id="militarL3" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="militarTF1" min="-2" pref="74" max="-2" attributes="0"/>
+                                      <Component id="pgTF1" min="-2" pref="74" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="militarTF2" max="32767" attributes="0"/>
+                                      <Component id="militarTF1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jFormattedTextField2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dataDescautelaFTF" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="militarL4" min="-2" pref="224" max="-2" attributes="0"/>
+                                              <Component id="qntL1" min="-2" pref="224" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
@@ -350,10 +353,10 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jButton2" min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Component id="descautelaB" min="-2" pref="167" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jCheckBox2" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
+                                          <Component id="descautelaChB" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -369,31 +372,31 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tituloPanelL2" pref="59" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="materialCoB1" min="-2" max="-2" attributes="0"/>
+                      <Component id="cautelasCoB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="militarL3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="pgTF1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="militarTF1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="militarTF2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="militarL5" min="-2" max="-2" attributes="0"/>
+                              <Component id="obsL1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                              <Component id="obsSP1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="militarL4" min="-2" max="-2" attributes="0"/>
+                              <Component id="qntL1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="qntPrevistaS2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                              <Component id="descautelaChB" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField2" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataDescautelaFTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="descautelaB" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -402,7 +405,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="materialCoB1">
+            <Component class="javax.swing.JComboBox" name="cautelasCoB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
@@ -414,11 +417,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="materialCoB1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cautelasCoBActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="Cautela caut = null;&#xa;for(int i = 1; i &lt;= BancoDados.getListSize(Cautela.class); i++){&#xa;    caut = BancoDados.getCautela(i);&#xa;    materialCoB1.addItem(&quot;Mil: &quot; + caut.getPg() + &quot;  &quot; + caut.getNome() + &quot; | &quot; + caut.getMaterialName() + &quot; | Qnt: &quot; + caut.getQnt() + &quot; | &quot; + caut.getData_cautela());&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="lerCautelas();"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="militarL3">
@@ -430,7 +433,7 @@
                 <Property name="text" type="java.lang.String" value="Militar que ir&#xe1; cautelar o material"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="militarTF1">
+            <Component class="javax.swing.JTextField" name="pgTF1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -443,10 +446,10 @@
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="militarTF1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pgTF1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="militarL4">
+            <Component class="javax.swing.JLabel" name="qntL1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
@@ -463,7 +466,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="militarL5">
+            <Component class="javax.swing.JLabel" name="obsL1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
@@ -472,7 +475,7 @@
                 <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xf5;es"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="obsSP1">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -497,7 +500,7 @@
                 <Property name="text" type="java.lang.String" value="Menu de Descautela"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="descautelaB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="20" style="1"/>
@@ -505,20 +508,23 @@
                 <Property name="text" type="java.lang.String" value="Descautelar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descautelaBActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+            <Component class="javax.swing.JCheckBox" name="descautelaChB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="18" style="0"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Cautelado Hoje?"/>
+                <Property name="text" type="java.lang.String" value="Descautelado Hoje?"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descautelaChBActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+            <Component class="javax.swing.JFormattedTextField" name="dataDescautelaFTF">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                   <Format subtype="1" type="1"/>
@@ -531,7 +537,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="militarTF2">
+            <Component class="javax.swing.JTextField" name="militarTF1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -544,7 +550,7 @@
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="militarTF2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="militarTF1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -565,7 +571,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="tituloPanelL" max="32767" attributes="0"/>
-                          <Component id="nomeMatL" alignment="0" pref="717" max="32767" attributes="0"/>
+                          <Component id="nomeMatL" alignment="0" pref="720" max="32767" attributes="0"/>
                           <Component id="nomeMatTF" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -585,15 +591,12 @@
                                   <Component id="tipoMatCoB" min="-2" pref="245" max="-2" attributes="0"/>
                                   <Component id="tipoMatL" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="sitCargaChB" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                                       <Component id="sitCargaL" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="sitCargaChB" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
