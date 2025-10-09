@@ -4,6 +4,9 @@
  */
 package com.kfstudio.main;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -15,7 +18,8 @@ public class Cautela {
     private int id = 0;
     private int materialId;
     private int qnt;
-    private Date data_cautela;
+    private int descautelado = 0;
+    private LocalDate data_cautela;
     private String pg;
     private String nome;
     private String obs;
@@ -27,7 +31,7 @@ public class Cautela {
         
         this.materialId = materialId;
         this.qnt = qnt;
-        this.data_cautela = data_cautela;
+        this.data_cautela = LocalDate.ofInstant(data_cautela.toInstant(), ZoneId.systemDefault());
         this.pg = pg;
         this.nome = nome;
         this.obs = obs;
@@ -39,8 +43,32 @@ public class Cautela {
         
     }
     
+    public boolean descautelar(int qnt){
+        
+        boolean fecharCaut;
+        if(this.descautelado < this.qnt){
+            fecharCaut = false;
+        }else   {
+            fecharCaut = true;
+        }
+        
+        this.descautelado += qnt;
+        this.qnt -= qnt;
+        
+        BancoDados.descautelarMat(this, fecharCaut, true);
+        return fecharCaut;
+    }
+    
     public void setId(int id){
         this.id = id;
+    }
+
+    public int getDescautelado() {
+        return descautelado;
+    }
+
+    public void setDescautelado(int descautelado) {
+        this.descautelado = descautelado;
     }
 
     public void setMaterialId(int material_id) {
@@ -52,7 +80,11 @@ public class Cautela {
         this.qnt = qnt;
     }
 
-    public void setData_cautela(Date data_cautela) {
+    public void setData_cautela(Date dataCautela) {
+        this.data_cautela = LocalDate.from(Instant.ofEpochMilli(dataCautela.getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+    }
+    
+    public void setData_cautela(LocalDate data_cautela){
         this.data_cautela = data_cautela;
     }
 
@@ -92,7 +124,7 @@ public class Cautela {
         return qnt;
     }
 
-    public Date getData_cautela() {
+    public LocalDate getData_cautela() {
         return data_cautela;
     }
 

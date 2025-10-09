@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,6 +69,7 @@ public class BancoDados {
                 caut.setObs(rs.getString("obs"));
                 caut.setSit_cautela(rs.getBoolean("sit_cautela"));
                 caut.setData_descautela(rs.getDate("data_descautela"));
+                caut.setDescautelado(rs.getInt("descautelado"));
                 temp.add(caut);
             }
         }catch(SQLException e){e.printStackTrace();}
@@ -85,7 +87,6 @@ public class BancoDados {
     }
     
     public static Material getMaterial(int id){
-        
         for(int i = 0; i < materiais.size(); i++){
             if(materiais.get(i).getId() == id){
                 return materiais.get(i);
@@ -130,11 +131,27 @@ public class BancoDados {
     
     public static void addCautela(Cautela caut, JPanel parent, boolean fecharCnx){
         
-        String sql = "INSERT INTO cautelas (material_id, qnt, data_cautela, pg, nome, obs) VALUES ("+caut.getMaterial_id()+", "+caut.getQnt()+", "+caut.getData_cautela()+", '"+caut.getPg()+"', '"+caut.getNome()+"', '"+caut.getObs()+"')";
+        String sql = "INSERT INTO cautelas (material_id, qnt, data_cautela, pg, nome, obs) VALUES ("+caut.getMaterial_id()+", "+caut.getQnt()+", '"+caut.getData_cautela()+"', '"+caut.getPg()+"', '"+caut.getNome()+"', '"+caut.getObs()+"')";
         System.out.println(sql);
-        //scriptSql(sql,false,fecharCnx);
+        scriptSql(sql,false,false);
+        carregarCautelas(false);
+        carregarMateriais(fecharCnx);
         JOptionPane.showMessageDialog(parent, "Material: " + caut+"\n Adicionado com sucesso");
-            
+        
+    }
+    
+    public static void descautelarMat(Cautela caut, boolean fecharCaut, boolean fecharCnx){
+        
+        String sql = "UPDATE cautelas SET descautelado = " + caut.getDescautelado() + ", qnt = " + caut.getQnt();
+        String sqlMatId = " WHERE id = " + caut.getId() + ";";
+        if(fecharCaut)
+            sql += ", sit_cautela = FALSE, data_descautela = CURRENT_DATE";
+        sql += sqlMatId;
+        //scriptSql(sql,false,false);
+        //carregarCautelas(false);
+        //carregarMateriais(fecharCnx);
+        System.out.println(sql);
+        
     }
     
     private static ResultSet scriptSql(String sql, boolean retorno, boolean fecharCnx){
