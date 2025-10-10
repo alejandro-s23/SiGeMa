@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class BancoDados {
     
     // Informações de conexão com o banco de dados
-    private static String url = "jdbc:postgresql://localhost:5432/cautelasDB";
+    private static String url = "jdbc:postgresql://localhost:5432/sigmadb";
     private static String usuario = "cliente";
     private static String senha = "senha123";
     private static ArrayList<Material> materiais;
