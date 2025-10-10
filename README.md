@@ -90,6 +90,25 @@ Bash
 
 Este comando por fim iniciará o programa!!
 
+### Futuras Implementações
+
+Por motivos de agenda, ainda não consegui implementar tudo que gostaria no programa, então deixarei abaixo, uma lista das minhas ideias para o programa:
+#### Sistema de login utilizando arquivos criptografados
+
+Funcionará da seguinte maneira, o programa terá um menu que criará um arquivo criptografado com o "usuário" e "senha" para a conexão no banco de dados, do mesmo jeito que ele saberá ler esse arquivo.
+
+#### Sistema para excluir materiais inseridos por engano ou depejados
+
+Para completar o CRUD, será adicionado um menu para excluir os materiais não desejados, sob a condição de não haver nenhum material cautelado
+
+#### Menu para listar cautelas por filtros
+
+Como forma de auxiliar na procura de cautelas específicas, futuramente será adicionado um menu específico que exibirá as cautelas baseadas em um filtro escolhido pelo usuário.
+
+#### Correção do bug de largura da janela
+
+Atualmente se você inserir um material com um nome muito longo os campos irão sair da janela e impedirá de executar certas ações.
+
 Autor
 
     Alejandro Souza dos Santos
