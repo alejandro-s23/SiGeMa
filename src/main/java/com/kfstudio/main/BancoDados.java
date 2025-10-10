@@ -123,7 +123,6 @@ public class BancoDados {
     public static void addMatTabela(Material mat, JPanel parent, boolean fecharCnx){
         
         String sql = "INSERT INTO materiais (material, tipo, previsto, existente, sit_carga) VALUES ('"+mat.getMaterial()+"', '"+mat.getTipo()+"', '"+mat.getPrevisto()+"', '"+mat.getExistente()+"', '"+mat.getSitCarga()+"')";
-        System.out.println(sql);
         scriptSql(sql,false,false);
         carregarMateriais(fecharCnx);
         JOptionPane.showMessageDialog(parent, "Material: " + getMaterial(materiais.getLast().getId())+"\n Adicionado com sucesso");
@@ -133,11 +132,10 @@ public class BancoDados {
     public static void addCautela(Cautela caut, JPanel parent, boolean fecharCnx){
         
         String sql = "INSERT INTO cautelas (material_id, qnt, data_cautela, pg, nome, obs) VALUES ("+caut.getMaterial_id()+", "+caut.getQnt()+", '"+caut.getData_cautela()+"', '"+caut.getPg()+"', '"+caut.getNome()+"', '"+caut.getObs()+"')";
-        System.out.println(sql);
         scriptSql(sql,false,false);
         carregarCautelas(false);
         carregarMateriais(fecharCnx);
-        JOptionPane.showMessageDialog(parent, "Material: " + caut+"\n Adicionado com sucesso");
+        JOptionPane.showMessageDialog(parent, "Cautela: " + caut+"\n Criada com sucesso");
         
     }
     
