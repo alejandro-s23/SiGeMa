@@ -26,5 +26,9 @@ echo "======================================"
 echo "Criando o Banco de Dados do SiGMa"
 echo "======================================"
 
-sudo -u postgres createdb -U postgres sigmadb
-[[ -f "sigmadb.sql" ]] && sudo -u postgres psql -U postgres -v usuario="$(whoami)" -d sigmadb -f sigmadb.sql
+#Criando um usuario novo
+sudo -u postgres psql -c "CREATE USER $(whoami) WITH SUPERUSER PASSWORD 'senha123';"
+#Criando o banco de dados
+createdb -U $(whoami) sigmadb
+#Copiando a template para o novo banco de dados
+psql -U $(whoami) -v usuario="$(whoami)" -d sigmadb -f $(pwd)/sigmadb.sql
