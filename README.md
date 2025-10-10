@@ -61,7 +61,10 @@ Para rodar este projeto localmente, siga os passos abaixo:
     Apache Maven
 
     Servidor PostgreSQL
-Apenas para demonstrar os requisitos, mas o instalador já fará o download de todas as ferramentas necessárias para a execução do programa
+
+    Sistema Operacional: Ubuntu (distros Ubuntu)
+    
+#### O Instalador fará a instalação as ferramentas necessárias para a execuçãodo programa!
 
 ### 1. Baixar a release mais recente
 
