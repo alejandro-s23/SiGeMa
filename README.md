@@ -64,7 +64,7 @@ Para rodar este projeto localmente, siga os passos abaixo:
 
     Sistema Operacional: Ubuntu (distros Ubuntu)
     
-#### O Instalador fará a instalação as ferramentas necessárias para a execuçãodo programa!
+#### O Instalador fará a instalação das ferramentas necessárias para a execução do programa!
 
 ### 1. Baixar a release mais recente
 
