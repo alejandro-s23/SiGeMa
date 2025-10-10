@@ -1,4 +1,4 @@
-# Sistema de Cautelas
+# Sistema de Gerenciamento de Material (SiGMa)
 
 ### SISTEMA ESTÁ SENDO DESENVOLVIDO AINDA!!!!
 

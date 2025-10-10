@@ -46,13 +46,15 @@ public class Cautela {
     public boolean descautelar(int qnt){
         
         boolean fecharCaut;
+        this.descautelado += qnt;
+        
         if(this.descautelado < this.qnt){
             fecharCaut = false;
         }else   {
             fecharCaut = true;
         }
         
-        this.descautelado += qnt;
+        
         this.qnt -= qnt;
         
         BancoDados.descautelarMat(this, fecharCaut, true);

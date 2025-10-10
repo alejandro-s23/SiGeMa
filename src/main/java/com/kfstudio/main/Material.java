@@ -100,7 +100,7 @@ public class Material {
     
     @Override
     public String toString(){
-        return this.material + "| Tipo: " + this.tipo + " | Sit Carga: "+this.sitCarga+" P:E:C:S + " + this.previsto+":"+this.existente+":"+this.cautelado+":"+this.saldo;
+        return this.id + " | " + this.material + " | Sit Carga: "+this.sitCarga+" P:E:C:S + " + this.previsto+":"+this.existente+":"+this.cautelado+":"+this.saldo;
     }
     
 }

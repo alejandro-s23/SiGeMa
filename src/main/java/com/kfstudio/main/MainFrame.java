@@ -90,8 +90,6 @@ public class MainFrame extends javax.swing.JFrame {
         addMatB = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -521,14 +519,6 @@ public class MainFrame extends javax.swing.JFrame {
         jTabelaMenus.addTab("Add. Material", addMatP);
 
         jMenu1.setText("FIle");
-
-        jMenu3.setText("Banco Dados");
-
-        jMenuItem1.setText("Verificar Banco Dados");
-        jMenu3.add(jMenuItem1);
-
-        jMenu1.add(jMenu3);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -614,6 +604,12 @@ public class MainFrame extends javax.swing.JFrame {
         BancoDados.addCautela(caut, addMatP, true);
         lerMateriais();
         lerCautelas();
+        militarTF.setText("");
+        obsTA.setText("");
+        pgCoB.setSelectedIndex(0);
+        qntCautS.setValue(0);
+        dataCautelaFTF.setText("dd/mm/aaaa");
+        dataCautelaChB.setSelected(true);
         
     }//GEN-LAST:event_cautelaBActionPerformed
 
@@ -640,6 +636,11 @@ public class MainFrame extends javax.swing.JFrame {
         }else {
             JOptionPane.showMessageDialog(rootPane, "Foram descauteladas " + (int)qntCautS2.getValue() + " unidades\nRestam " + caut.getQnt() + " unidades");
         }
+        lerMateriais();
+        lerCautelas();
+        pgTF1.setText("");
+        militarTF1.setText("");
+        obsTF1.setText("");
     }//GEN-LAST:event_descautelaBActionPerformed
 
     private void pgTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pgTF1ActionPerformed
@@ -661,6 +662,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void cautelasCoBPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cautelasCoBPopupMenuWillBecomeInvisible
         
         if(!cautelasCoB.getSelectedItem().toString().substring(0, 1).matches("\\d")){
+            pgTF1.setText("");
+            militarTF1.setText("");
+            obsTF1.setText("");
             return;
         }
         Cautela caut = BancoDados.getCautela(Integer.parseInt(cautelasCoB.getSelectedItem().toString().substring(0, 1)));
@@ -726,9 +730,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel descautelaP;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTabbedPane jTabelaMenus;
     private javax.swing.JComboBox<String> materialCoB;
     private javax.swing.JLabel militarL;
