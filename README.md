@@ -1,14 +1,14 @@
 # Sistema de Gerenciamento de Material (SiGMa)
 
-### SISTEMA ESTÁ SENDO DESENVOLVIDO AINDA!!!!
 
 ## Descrição do Projeto
 
 Este projeto é um sistema em Java para o gerenciamento de materiais e cautelas. Ele visa controlar o inventário de itens, registrando a entrada, saída (cautela) e o saldo de materiais, garantindo a organização e o controle de ativos.
+Como é um dos meus primeiros projetos, pode conter alguns bugs, fique a vontade para entrar em contato comigo para relatar os bugs!
 
 ## Tecnologias Utilizadas
 
-    Linguagem de Programação: Java
+    Linguagem de Programação: Java, Bash/Shell
 
     Banco de Dados: PostgreSQL
 
@@ -28,21 +28,27 @@ Armazena informações sobre os materiais disponíveis.
 | id | SERIAL (PK) | Chave primária, auto-incrementada. |
 | material | VARCHAR(150) | Nome do material. |
 | tipo | VARCHAR(25) | Categoria do material. |
-| disponivel | BOOLEAN | Indica se o material está em estoque (TRUE) ou não (FALSE). |
 | previsto | INTEGER | Quantidade prevista em estoque. |
 | existente | INTEGER | Quantidade existente em estoque. |
-| data_registro | DATE | Data de registro do material. |
+| sit_carga | BOOLEAN | Material está documentado?. |
+O valor de saldo e de quantidade de material cautelado é armazenado internamente no programa!
 
-## Tabela registros_cautela
+## Tabela cautelas
 
 Registra cada operação de cautela dos materiais.
+Por se tratar de um sistema utilizado no âmbito militar, ele possui algumas particularidades como a coluna "pg".
 | Coluna | Tipo de Dado | Descrição |
 | :--- | :--- | :--- |
 | id | SERIAL (PK) | Chave primária, auto-incrementada. |
 | material_id | INTEGER (FK) | Chave estrangeira que referencia o id da tabela materiais. |
 | quantidade | INTEGER | Quantidade de itens envolvidos na cautela. |
 | data_cautela | DATE | Data em que a cautela foi realizada. |
-| observacao | VARCHAR(255) | Observações adicionais sobre a cautela. |
+| pg | VARCHAR(10) | Posto/Graduação do militar que cautelou o material |
+| nome | VARCHAR(50) | Nome do militar que cautelou o material |
+| obs | VARCHAR(255) | Observações adicionais sobre a cautela. |
+| sit_caut | BOOLEAN | Armezena se a cautela ainda está aberta ou encerrada |
+| data_descautela | DATE | Data em que foi feita a descautela |
+| descautelado | INTEGER | Quantas unidades já foram descauteladas |
 
 ## Configuração do Ambiente
 
@@ -55,38 +61,34 @@ Para rodar este projeto localmente, siga os passos abaixo:
     Apache Maven
 
     Servidor PostgreSQL
+Apenas para demonstrar os requisitos, mas o instalador já fará o download de todas as ferramentas necessárias para a execução do programa
 
-### 1. Clonar o Repositório
+### 1. Baixar a release mais recente
 
-Bash
+Entre na aba de releases e baixe o arquivo .zip nela.
 
-    git clone https://github.com/alejandro-s23/SiGeMa.git
-    cd Cautelas
+### 2. Extrair o arquivo
 
-### 2. Configurar o Banco de Dados
+  Após baixado o .zip, extraia ele no diretório que deseja instalar o SiGMa.
+  
+### 3. Conceder permissões
 
-  Inicie o seu servidor PostgreSQL.
-
-  Crie um novo banco de dados chamado cautelasDB e um usuário com permissões de acesso.
-    SQL
+ Abra o terminal no diretório "instalador" e cole as seguintes linhas de comando:
  
-      CREATE DATABASE "cautelasDB";
-      CREATE USER [SEU_USUARIO] WITH PASSWORD '[SUA_SENHA]';
-      GRANT ALL PRIVILEGES ON DATABASE "cautelasDB" TO [SEU_USUARIO]";
+ Bash
 
-  Execute os scripts SQL para criar as tabelas materiais e registros_cautela.
+    chmod +x *sh
+    ./Instalar\ SiGMa.sh
 
-### 3. Configurar a Conexão no Projeto
+Ao executar esse comando você autorizou os arquivos .sh à serem executados, e o outro comando executará o instalador das dependências do SiGMa.
 
-Abra o projeto no seu IDE e configure as credenciais de conexão com o banco de dados no arquivo de configuração apropriado (por exemplo, application.properties ou em uma classe de utilidade de conexão).
+### 4. SiGMa
 
-### 4. Rodar o Projeto
-
-Execute o projeto a partir do seu IDE ou usando o Maven:
 Bash
 
-    mvn clean install
-    mvn exec:java
+    ./SiGMa.sh
+
+Este comando por fim iniciará o programa!!
 
 Autor
 
