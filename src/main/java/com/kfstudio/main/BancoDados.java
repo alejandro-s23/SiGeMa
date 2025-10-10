@@ -147,9 +147,9 @@ public class BancoDados {
         if(fecharCaut)
             sql += ", sit_cautela = FALSE, data_descautela = CURRENT_DATE";
         sql += sqlMatId;
-        //scriptSql(sql,false,false);
-        //carregarCautelas(false);
-        //carregarMateriais(fecharCnx);
+        scriptSql(sql,false,false);
+        carregarCautelas(false);
+        carregarMateriais(fecharCnx);
         System.out.println(sql);
         
     }

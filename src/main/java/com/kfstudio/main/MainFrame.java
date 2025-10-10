@@ -640,6 +640,8 @@ public class MainFrame extends javax.swing.JFrame {
         }else {
             JOptionPane.showMessageDialog(rootPane, "Foram descauteladas " + (int)qntCautS2.getValue() + " unidades\nRestam " + caut.getQnt() + " unidades");
         }
+        lerMateriais();
+        lerCautelas();
     }//GEN-LAST:event_descautelaBActionPerformed
 
     private void pgTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pgTF1ActionPerformed
