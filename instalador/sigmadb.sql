@@ -7,7 +7,7 @@
 -- Dumped from database version 18.0 (Ubuntu 18.0-1.pgdg24.04+3)
 -- Dumped by pg_dump version 18.0 (Ubuntu 18.0-1.pgdg24.04+3)
 
-CREATE USER cliente WITH SUPERUSER PASSWORD 'senha123';
+CREATE USER :usuario WITH SUPERUSER PASSWORD 'senha123';
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -44,7 +44,7 @@ CREATE TABLE public.cautelas (
 );
 
 
-ALTER TABLE public.cautelas OWNER TO cliente;
+ALTER TABLE public.cautelas OWNER TO usuario;
 
 --
 -- Name: materiais; Type: TABLE; Schema: public; Owner: cliente
@@ -62,7 +62,7 @@ CREATE TABLE public.materiais (
 );
 
 
-ALTER TABLE public.materiais OWNER TO cliente;
+ALTER TABLE public.materiais OWNER TO usuario;
 
 --
 -- Name: cautelas_id_seq; Type: SEQUENCE; Schema: public; Owner: cliente
@@ -77,7 +77,7 @@ CREATE SEQUENCE public.cautelas_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.cautelas_id_seq OWNER TO cliente;
+ALTER SEQUENCE public.cautelas_id_seq OWNER TO usuario;
 
 --
 -- Name: cautelas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cliente
@@ -99,7 +99,7 @@ CREATE SEQUENCE public.cautelas_id_seq1
     CACHE 1;
 
 
-ALTER SEQUENCE public.cautelas_id_seq1 OWNER TO cliente;
+ALTER SEQUENCE public.cautelas_id_seq1 OWNER TO usuario;
 
 --
 -- Name: cautelas_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: cliente
