@@ -107,16 +107,17 @@ public class BancoDados {
     
     private static int getQntCautelas(Material mat, boolean fecharCnx){
         
+        int soma = 0;
+        
         try {
-            String sql = "SELECT COUNT(*) FROM cautelas WHERE material_id = " + mat.getId();
+            String sql = "SELECT qnt FROM cautelas WHERE material_id = " + mat.getId();
             ResultSet rs = scriptSql(sql, true,fecharCnx);
             if(rs.next()){
-                return rs.getInt("count");
+                soma+=rs.getInt("qnt");
             }
 
         } catch (SQLException e){e.printStackTrace();}
-        
-        return -1;
+        return soma;
     }
     
     public static void addMatTabela(Material mat, JPanel parent, boolean fecharCnx){
@@ -149,9 +150,7 @@ public class BancoDados {
         sql += sqlMatId;
         scriptSql(sql,false,false);
         carregarCautelas(false);
-        carregarMateriais(fecharCnx);
-        System.out.println(sql);
-        
+        carregarMateriais(fecharCnx);        
     }
     
     private static ResultSet scriptSql(String sql, boolean retorno, boolean fecharCnx){

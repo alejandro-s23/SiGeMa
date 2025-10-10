@@ -663,6 +663,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void cautelasCoBPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cautelasCoBPopupMenuWillBecomeInvisible
         
         if(!cautelasCoB.getSelectedItem().toString().substring(0, 1).matches("\\d")){
+            pgTF1.setText("");
+            militarTF1.setText("");
+            obsTF1.setText("");
             return;
         }
         Cautela caut = BancoDados.getCautela(Integer.parseInt(cautelasCoB.getSelectedItem().toString().substring(0, 1)));
