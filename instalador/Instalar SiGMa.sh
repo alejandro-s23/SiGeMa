@@ -21,6 +21,14 @@ if [[ ! -x $(which java) ]]; then
   sudo apt install default-jre -y
 fi
 
+if [[ ! -x $(which mvn) ]]; then
+  echo "======================================"
+  echo "Instalando o Java Maven"
+  echo "======================================"
+  sudo apt update > /dev/null
+  sudo apt install maven -y
+fi
+
 #Criação do banco de dados
 echo "======================================"
 echo "Criando o Banco de Dados do SiGMa"
