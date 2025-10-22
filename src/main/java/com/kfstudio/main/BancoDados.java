@@ -108,12 +108,14 @@ public class BancoDados {
     private static int getQntCautelas(Material mat, boolean fecharCnx){
         
         int soma = 0;
-        
+        System.out.println("Lendo Mat: ");
+        System.out.println(mat);
         try {
             String sql = "SELECT qnt FROM cautelas WHERE material_id = " + mat.getId();
             ResultSet rs = scriptSql(sql, true,fecharCnx);
-            if(rs.next()){
+            while(rs.next()){
                 soma+=rs.getInt("qnt");
+                System.out.println("Soma : " + soma);
             }
 
         } catch (SQLException e){e.printStackTrace();}
